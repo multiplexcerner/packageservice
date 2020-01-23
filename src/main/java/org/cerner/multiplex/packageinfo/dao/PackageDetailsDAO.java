@@ -110,6 +110,7 @@ public class PackageDetailsDAO<Integer, Package> {
         for (Map.Entry<Integer, Package> entry : map.entrySet())
         {
             org.cerner.multiplex.packageinfo.model.Package packageItem = (org.cerner.multiplex.packageinfo.model.Package)entry.getValue();
+
             if (packageItem.getHospitalId() ==  key) {
                 packages.add(packageItem);
             }
