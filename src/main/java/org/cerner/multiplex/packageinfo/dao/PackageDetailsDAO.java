@@ -1,6 +1,8 @@
 package org.cerner.multiplex.packageinfo.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -102,8 +104,17 @@ public class PackageDetailsDAO<Integer, Package> {
      * @param key the lookup key
      * @return the value stored under the given key, or null
      */
-    public synchronized Package get(Integer key) {
-        return map.get(key);
+    public synchronized List<org.cerner.multiplex.packageinfo.model.Package> get(int key) {
+
+        List<org.cerner.multiplex.packageinfo.model.Package> packages = new ArrayList<>();
+        for (Map.Entry<Integer, Package> entry : map.entrySet())
+        {
+            org.cerner.multiplex.packageinfo.model.Package packageItem = (org.cerner.multiplex.packageinfo.model.Package)entry.getValue();
+            if (packageItem.getHospitalId() ==  key) {
+                packages.add(packageItem);
+            }
+        }
+        return packages;
     }
 }
 

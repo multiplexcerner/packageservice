@@ -31,7 +31,7 @@ public class PackageResource {
     }
 
     @GetMapping("/package/{id}")
-    ResponseEntity<Package> get(@PathVariable("id") String id)
+    ResponseEntity<List<Package>> get(@PathVariable("id") String id)
     {
         int key = Integer.parseInt(id);
         return ResponseEntity.status(HttpStatus.OK).body(hospitalDAO.get(key));
